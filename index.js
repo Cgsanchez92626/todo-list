@@ -4,6 +4,7 @@
 // console.log(document.getElementById('add-todo'));
 
 const button = document.getElementById('add-todo');
+const reset = document.getElementById('reset-btn');
 // console.log(button);
 
 
@@ -50,6 +51,21 @@ function handleAddTodo() {
     // Clear input field after adding todo
     input.value = '';
 }
- 
+ // Function to run when the "Clear Completed" button is clicked
+function handleClearCompleted() {
+    // Access all list items
+    const todos = document.querySelectorAll('#todo-list li');
+
+    // Iterate over each list item
+    todos.forEach(todo => {
+        // Check if the todo is completed (i.e., checkbox is checked)
+        if (todo.querySelector('input[type="checkbox"]').checked) {
+            // Remove the todo from the list
+            todo.remove();
+        }
+    });
+}
+
 //add an event listener
 button.addEventListener('click', handleAddTodo);
+reset.addEventListener('click', handleClearCompleted);
